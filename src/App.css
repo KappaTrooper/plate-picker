@@ -1,8 +1,5 @@
-.Meal{
-    display: flex;
-    justify-content: flex-start;
-    
-    
-    gap: 2%;
+.Meal {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2%;
 }
-

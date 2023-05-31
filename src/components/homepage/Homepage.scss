@@ -1,31 +1,26 @@
-.home {
-    margin: 1rem;
-    width: 100%;
-    
+.wrap {
+  display: flex;
 }
 
-
-
+.home {
+  margin: 1rem;
+  width: 100%;
+}
 
 // Random
 
-.home{
-
-    &__title{
-        display: flex;
-    }
-
-
-    
+.home {
+  &__title {
+    display: flex;
+  }
 }
 
 .home__random {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &-image{
-        width: 25%;
-    }
+  &-image {
+    width: 25%;
+  }
 }
-
