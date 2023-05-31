@@ -3,15 +3,21 @@
 }
 
 .home {
-  margin: 1rem;
+  padding: 1rem;
   width: 100%;
+  opacity: 90%;
 }
 
 // Random
 
 .home {
+  background-color: #e6ffe6;
+  color: #009900;
+
   &__title {
     display: flex;
+    font-weight: 400;
+    padding-left: 0.5rem;
   }
 }
 
@@ -22,28 +28,43 @@
 
   &-text {
     text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    letter-spacing: 0.1rem;
   }
 
   &-image {
-    width: 25%;
+    width: 90%;
+    height: 30%;
+    border-radius: 1rem;
+    opacity: 80%;
   }
 
   &-tags {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    gap: 0.5rem;
   }
 
-  &-tagbox{
+  &-tagbox {
     display: flex;
     justify-content: center;
     gap: 5%;
   }
 
-  &-instructions-text{
+  &-instructions-text {
     text-align: left;
- 
+    padding: 0.5rem;
+    letter-spacing: 0.05rem;
+    line-height: 3rem;
+
+    &-id {
+      display: none;
+    }
   }
+}
+
+table {
+  border-spacing: 4rem 0.5rem;
 }

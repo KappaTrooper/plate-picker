@@ -62,9 +62,9 @@ export default function Homepage() {
 
             <div className="home__random-instructions">
               <p className="home__random-instructions-text">
-                {mealData?.strInstructions}
+                {mealData?.strInstructions.split("\r\n\r\n").join("\n\n")}
               </p>
-              <p className="home__random-instructions-text">
+              <p className="home__random-instructions-text-id">
                 {mealData?.idMeal}
               </p>
             </div>
