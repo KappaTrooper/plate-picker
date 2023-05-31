@@ -1,33 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Homepage.scss";
 import NavBar from "../../components/navbar/Navbar.js";
-import Foodbutton from "../foodbutton/Foodbutton.js";
-import { useState, useEffect } from "react";
+import Recipe from "../recipe/Recipe.js";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 export default function Homepage() {
-  // const param = useParams();
-  // const recipeID = param.id;
-  // const [defaultRecipeID, setDefaultRecipeID] = useState(null);
-  // useEffect(() => {
-  //   axios
-  //     .get("www.themealdb.com/api/json/v1/1/random.php")
-  //     .then((response) => setDefaultRecipeID(response.data));
-  //   console.log(response.data);
-  // }, []);
+  const [mealData, setMealData] = useState(null);
 
-  // if (!defaultRecipeID) {
-  //   return <h1>Loading...</h1>;
-  // }
-  // const activeRecipeID = recipeID || defaultRecipeID;
-  const fetchData = () => {
-    console.log("Fetching data..."); // Add this line
+  const getreceipeID = (id) => {
+    console.log("Clicked ID:", id);
+  };
+
+  useEffect(() => {
+    getAPIdata();
+  }, []);
+
+  const getAPIdata = () => {
     axios
       .get("https://www.themealdb.com/api/json/v1/1/random.php")
       .then((response) => {
-        const data = response.data;
-        console.log(data); // Add this line
+        const data = response.data.meals[0];
+        setMealData(data);
       })
       .catch((error) => {
         console.error(error);
@@ -40,18 +33,42 @@ export default function Homepage() {
         <NavBar />
       </div>
       <div className="home">
+        <h1 className="home__title">Today's Choice</h1>
         <div className="home__container">
-          <h1 className="home__title">Today's Option</h1>
-
-          <div className="home__random">
+          <div
+            className="home__random"
+            onClick={() => getreceipeID(mealData?.idMeal)}
+          >
+            <p className="home__random-text">{mealData?.strMeal}</p>
             <img
-              src="https://www.themealdb.com/images/media/meals/4er7mj1598733193.jpg"
+              src={mealData?.strMealThumb}
               className="home__random-image"
-              alt="picture"
+              alt="meal"
             />
-            <p className="home__random-text">Koshari</p>
+            <div className="home__random-tags">
+              <div className="home__random-tagbox">
+                <p className="home__random-text">Region: </p>
+                <p className="home__random-text">{mealData?.strArea}</p>
+              </div>
+              <div className="home__random-tagbox">
+                <p className="home__random-text">Category: </p>
+                <p className="home__random-text">{mealData?.strCategory}</p>
+              </div>
+            </div>
+
+            <div className="home__random-recipe-component">
+              <Recipe mealData={mealData} /> {/* Pass mealData as a prop */}
+            </div>
+
+            <div className="home__random-instructions">
+              <p className="home__random-instructions-text">
+                {mealData?.strInstructions}
+              </p>
+              <p className="home__random-instructions-text">
+                {mealData?.idMeal}
+              </p>
+            </div>
           </div>
-          <Foodbutton />
         </div>
       </div>
     </div>
